@@ -19,5 +19,17 @@ namespace YahooFantasyFootball.Controllers
 
             return View();
         }
+
+        public IActionResult Members()
+        {
+            ViewBag.Title = "League Members";
+            return View();
+        }
+
+        public IActionResult WeatherTool()
+        {
+            ViewBag.Title = "Weather Tool";
+            return View();
+        }
     }
 }
