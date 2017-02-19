@@ -13,6 +13,10 @@ namespace YahooFantasyFootball.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            ViewBag.Title = "To Do List";
+            //ViewData["Title"] = "To Do List";
+            //TempData["Title"] = "To Do List"; //Persists between redirects (session variable)
+
             return View();
         }
     }
