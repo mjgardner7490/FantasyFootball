@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "exports": {
+    "OAuthLib/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/OAuthLib.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/OAuthLib.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/OAuthLib.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
+    "YahooAPI/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/YahooAPI.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/YahooAPI.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/YahooAPI.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
