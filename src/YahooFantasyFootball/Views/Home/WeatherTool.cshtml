@@ -1,9 +1,5 @@
 ﻿<h1>@ViewBag.Title</h1>
 
-@*<form asp-action="WeatherTool" >
-    @Html.DropDownList("Week", new SelectList(listItems, "Value", "Text"), new { @class = "input-sm" })
-</form>*@
-
 @model YahooFantasyFootball.ViewModels.GameWeekVM
 @using (Html.BeginForm("WeatherTool", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
