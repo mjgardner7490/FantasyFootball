@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using YahooFantasyFootball.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,10 +28,26 @@ namespace YahooFantasyFootball.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult WeatherTool(GameWeekVM gameWeekVM)
+        {
+            var test = gameWeekVM;
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult WeatherTool()
         {
             ViewBag.Title = "Weather Tool";
-            return View();
+            GameWeekVM gameWeekVM = new GameWeekVM();
+            gameWeekVM.GameWeekList = new[]
+            {
+                new SelectListItem { Value = "1", Text = "Week 1" },
+                new SelectListItem { Value = "2", Text = "Week 2" },
+                new SelectListItem { Value = "3", Text = "Week 3" },
+                new SelectListItem { Value = "4", Text = "Week 4" }
+            };
+            return View(gameWeekVM);
         }
     }
 }

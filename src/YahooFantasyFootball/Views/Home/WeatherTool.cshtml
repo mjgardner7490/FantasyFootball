@@ -1,4 +1,16 @@
 ﻿<h1>@ViewBag.Title</h1>
-<p>Welcome to my Fantasy Football League site</p>
 
-@Html.Partial("_SharedView")
+@*<form asp-action="WeatherTool" >
+    @Html.DropDownList("Week", new SelectList(listItems, "Value", "Text"), new { @class = "input-sm" })
+</form>*@
+
+@model YahooFantasyFootball.ViewModels.GameWeekVM
+@using (Html.BeginForm("WeatherTool", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.DropDownListFor(x => x.GameWeekId, new SelectList(Model.GameWeekList, "Value", "Text"), "Select..", new { @class = "input-sm" })
+    <input type="submit" value="Submit" />
+}
+
+
+
