@@ -1,12 +1,18 @@
 ﻿<h1>@ViewBag.Title</h1>
 
-@model YahooFantasyFootball.ViewModels.GameWeekVM
+@*@model YahooFantasyFootball.ViewModels.GameWeekVM
 @using (Html.BeginForm("WeatherTool", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     @Html.DropDownListFor(x => x.GameWeekId, new SelectList(Model.GameWeekList, "Value", "Text"), "Select..", new { @class = "input-sm" })
     <input type="submit" value="Submit" />
+}*@
+
+@model YahooFantasyFootball.ViewModels.WeatherToolVM
+@using (Html.BeginForm("WeatherTool", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.DropDownListFor(model => model.GameWeekId, Model.GameWeeks, "Select...", new { @class = "input-sm" })
+    @Html.DropDownListFor(model => model.TeamId, Model.Managers, "Select...", new { @class = "input-sm" })
+    <input type="submit" value="Submit" />
 }
-
-
 

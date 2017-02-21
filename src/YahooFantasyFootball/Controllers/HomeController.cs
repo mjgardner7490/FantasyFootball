@@ -44,11 +44,11 @@ namespace YahooFantasyFootball.Controllers
         }
 
         [HttpPost]
-        public IActionResult WeatherTool(GameWeekVM gameWeekVM)
+        public IActionResult WeatherTool(WeatherToolVM weatherToolVM)
         {
             if(ModelState.IsValid)
             {
-                var test = gameWeekVM;
+                var test = weatherToolVM;
             }
             return WeatherTool();
         }
@@ -57,27 +57,15 @@ namespace YahooFantasyFootball.Controllers
         public IActionResult WeatherTool()
         {
             ViewBag.Title = "Weather Tool";
-            GameWeekVM gameWeekVM = new GameWeekVM();
-            gameWeekVM.GameWeekList = new[]
-            {
-                new SelectListItem { Value = "1", Text = "Week 1" },
-                new SelectListItem { Value = "2", Text = "Week 2" },
-                new SelectListItem { Value = "3", Text = "Week 3" },
-                new SelectListItem { Value = "4", Text = "Week 4" },
-                new SelectListItem { Value = "5", Text = "Week 5" },
-                new SelectListItem { Value = "6", Text = "Week 6" },
-                new SelectListItem { Value = "7", Text = "Week 7" },
-                new SelectListItem { Value = "8", Text = "Week 8" },
-                new SelectListItem { Value = "9", Text = "Week 9" },
-                new SelectListItem { Value = "10", Text = "Week 10" },
-                new SelectListItem { Value = "11", Text = "Week 11" },
-                new SelectListItem { Value = "12", Text = "Week 12" },
-                new SelectListItem { Value = "13", Text = "Week 13" },
-                new SelectListItem { Value = "14", Text = "Week 14" },
-                new SelectListItem { Value = "15", Text = "Week 15" },
-                new SelectListItem { Value = "16", Text = "Week 16" }
-            };
-            return View(gameWeekVM);
+            var weatherTool = new WeatherToolVM();
+            return View(weatherTool);
         }
+
+        #region Private Helpers
+
+
+
+
+        #endregion
     }
 }
