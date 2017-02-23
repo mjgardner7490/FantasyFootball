@@ -31,15 +31,16 @@ namespace YahooFantasyFootball
         {
             // Add framework services.
             services.AddMvc();
-            services.AddSingleton<ISportsProviderService, SportsProviderService>();
+            //services.AddSingleton<ISportsProviderService, SportsProviderService>();
             services.AddSingleton<IYahooApiService, YahooApiService>();
+            services.AddSingleton<IWeatherApiService, WeatherApiService>();
             //services.AddScoped<>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -48,8 +49,8 @@ namespace YahooFantasyFootball
                 app.UseExceptionHandler("/Home/Oops");
             }
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
 
             app.UseStaticFiles();
             app.UseMvc(config =>

@@ -5,13 +5,13 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Debug/OAuthLib.dll": {}
+        "bin/Release/OAuthLib.dll": {}
       },
       "runtime": {
-        "bin/Debug/OAuthLib.dll": {}
+        "bin/Release/OAuthLib.dll": {}
       },
       "contentFiles": {
-        "bin/Debug/OAuthLib.pdb": {
+        "bin/Release/OAuthLib.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -22,13 +22,13 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Debug/YahooAPI.dll": {}
+        "bin/Release/YahooAPI.dll": {}
       },
       "runtime": {
-        "bin/Debug/YahooAPI.dll": {}
+        "bin/Release/YahooAPI.dll": {}
       },
       "contentFiles": {
-        "bin/Debug/YahooAPI.pdb": {
+        "bin/Release/YahooAPI.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

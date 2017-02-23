@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using YahooAPI;
 using YahooSports.Api.Sports.Models;
 using YahooFantasyFootball.Services;
+using YahooFantasyFootball.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,19 +18,18 @@ namespace YahooFantasyFootball.Controllers
     {
 
         private IYahooApiService _yahooApiService;
+        private IWeatherApiService _weatherApiService;
 
-        public HomeController(ISportsProviderService sportsProviderService, IYahooApiService yahooApiService)
+        public HomeController(IYahooApiService yahooApiService, IWeatherApiService weatherApiService)
         {
             _yahooApiService = yahooApiService;
+            _weatherApiService = weatherApiService;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
             ViewBag.Title = "Welcome to my Fantasy Football site";
-            //ViewData["Title"] = "To Do List";
-            //TempData["Title"] = "To Do List"; //Persists between redirects (session variable)
-
             return View();
         }
 
@@ -52,7 +52,20 @@ namespace YahooFantasyFootball.Controllers
         {
             if(ModelState.IsValid)
             {
-                WeatherToolVM teamRoster = _yahooApiService.GetTeamRoster(weatherToolVM.TeamId, weatherToolVM.GameWeekId);
+                WeatherToolVM teamRoster = _yahooApiService.GetTeamRoster(weatherToolVM.TeamId, weatherToolVM.GameWeekId);  
+                
+                foreach(var player in teamRoster.TeamRoster)
+                {
+                    string city = player.NflTeam.Substring(0, player.NflTeam.IndexOf(" "));
+                    RootObject cityWeather = _weatherApiService.GetCityWeather(city);
+                    player.gameWeather = new GameWeather()
+                    {
+                        temperature = cityWeather.main.temp,
+                        description = cityWeather.weather.First().description,
+                        windSpeed = cityWeather.wind.speed
+                    };
+                }
+                   
                 return View(teamRoster);
             }
 
