@@ -9,7 +9,7 @@ namespace YahooFantasyFootball.ViewModels
     public class StandingsVM
     {
         public string leagueName { get; set; }
-        public ICollection<TeamStanding> TeamStandings { get; set; }
+        public IEnumerable<TeamStanding> TeamStandings { get; set; }
     }
 
     public class TeamStanding

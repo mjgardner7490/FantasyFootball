@@ -26,7 +26,7 @@ namespace YahooFantasyFootball.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.Title = "To Do List";
+            ViewBag.Title = "Welcome to my Fantasy Football site";
             //ViewData["Title"] = "To Do List";
             //TempData["Title"] = "To Do List"; //Persists between redirects (session variable)
 
@@ -52,8 +52,10 @@ namespace YahooFantasyFootball.Controllers
         {
             if(ModelState.IsValid)
             {
-                var test = weatherToolVM;
+                WeatherToolVM teamRoster = _yahooApiService.GetTeamRoster(weatherToolVM.TeamId, weatherToolVM.GameWeekId);
+                return View(teamRoster);
             }
+
             return WeatherTool();
         }
 

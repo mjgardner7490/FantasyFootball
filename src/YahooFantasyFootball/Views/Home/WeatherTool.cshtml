@@ -16,3 +16,24 @@
     <input type="submit" value="Submit" />
 }
 
+@if (Model.TeamRoster != null)
+{
+    @foreach (var player in Model.TeamRoster)
+    {
+        <tr>
+            <td>
+                <img src="@player.PlayerImageUrl" alt="Image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.PlayerPosition);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.PlayerName);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.NflTeam);
+            </td>
+        </tr>
+        <br />
+    }
+}

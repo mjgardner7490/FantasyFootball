@@ -12,12 +12,21 @@ namespace YahooFantasyFootball.ViewModels
         public IEnumerable<SelectListItem> GameWeeks { get; set; }
         public string TeamId { get; set; }
         public IEnumerable<SelectListItem> Managers { get; set; }
+        public IEnumerable<NflPlayer> TeamRoster { get; set; }
 
         public WeatherToolVM()
         {
             GameWeeks = GameWeeksDictionary.GameWeekSelectList;
             Managers = ManagersDictionary.ManagersSelectList;
         }
+    }
+
+    public class NflPlayer
+    {
+        public string NflTeam { get; set; }
+        public string PlayerName { get; set; }
+        public string PlayerPosition { get; set; }
+        public string PlayerImageUrl { get; set; }
     }
 
     public static class GameWeeksDictionary
@@ -66,16 +75,15 @@ namespace YahooFantasyFootball.ViewModels
             = new Dictionary<string, string>
             {
                 { "359.l.247388.t.1", "Tom's Team" },
-                { "359.l.247388.t.2", "Tom's Team" },
-                { "359.l.247388.t.3", "Tom's Team" },
-                { "359.l.247388.t.4", "Tom's Team" },
-                { "359.l.247388.t.5", "Tom's Team" },
-                { "359.l.247388.t.6", "Tom's Team" },
-                { "359.l.247388.t.7", "Tom's Team" },
-                { "359.l.247388.t.8", "Tom's Team" },
+                { "359.l.247388.t.2", "Raymond's Team" },
+                { "359.l.247388.t.3", "Brandon's Team" },
+                { "359.l.247388.t.4", "Chris's Team" },
+                { "359.l.247388.t.5", "Ziad's Team" },
+                { "359.l.247388.t.6", "Bashar's Team" },
+                { "359.l.247388.t.7", "Jason's Team" },
+                { "359.l.247388.t.8", "Cameron's Team" },
                 { "359.l.247388.t.9", "Mike's Team" },
-                { "359.l.247388.t.10", "Tom's Team" },
-
+                { "359.l.247388.t.10", "Jake's Team" },
             };
     }
 

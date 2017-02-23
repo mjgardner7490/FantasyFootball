@@ -38,23 +38,24 @@ namespace YahooFantasyFootball.Services
 
         public StandingsVM GetLeagueStandings()
         {
-            FantasyContent leagueStandings;
+            FantasyContent content;
             StandingsVM standingsVM = new StandingsVM();
+
             try
             {
-                leagueStandings = Client.ExecuteRequest<FantasyContent>(@"http://fantasysports.yahooapis.com/fantasy/v2/league/359.l.247388/standings");
+                content = Client.ExecuteRequest<FantasyContent>(@"http://fantasysports.yahooapis.com/fantasy/v2/league/359.l.247388/standings");
             }
             catch (SportsApiException)
             {
                 var token = Client.RefreshToken();
-                leagueStandings = Client.ExecuteRequest<FantasyContent>(@"http://fantasysports.yahooapis.com/fantasy/v2/league/359.l.247388/standings");
+                content = Client.ExecuteRequest<FantasyContent>(@"http://fantasysports.yahooapis.com/fantasy/v2/league/359.l.247388/standings");
             }
 
-            standingsVM.leagueName = leagueStandings.League.Name;
+            standingsVM.leagueName = content.League.Name;
             List<TeamStanding> teamStandings = new List<TeamStanding>();
             int placement = 1;
 
-            foreach (var team in leagueStandings?.League.LeagueStandings.Teams)
+            foreach (var team in content?.League.LeagueStandings.Teams)
             {
                 TeamStanding teamStanding = new TeamStanding()
                 {
@@ -70,6 +71,43 @@ namespace YahooFantasyFootball.Services
 
             standingsVM.TeamStandings = teamStandings;
             return standingsVM;
+        }
+
+        public WeatherToolVM GetTeamRoster(string teamId, int gameWeekId)
+        {
+            FantasyContent content;
+            WeatherToolVM weatherToolVM = new WeatherToolVM();
+
+            string url = string.Format(@"http://fantasysports.yahooapis.com/fantasy/v2/team/{0}/roster;week={1}", teamId, gameWeekId);
+
+            try
+            {
+                content = Client.ExecuteRequest<FantasyContent>(url);
+                //content = Client.ExecuteRequest<FantasyContent>(@"http://fantasysports.yahooapis.com/fantasy/v2/team/359.l.247388.t.9/roster;week=2");
+            }
+            catch (SportsApiException)
+            {
+                var token = Client.RefreshToken();
+                content = Client.ExecuteRequest<FantasyContent>(url);
+            }
+
+            List<NflPlayer> roster = new List<NflPlayer>();
+
+            foreach (var player in content?.Team.TeamRoster.Players)
+            {
+                NflPlayer nflPlayer = new NflPlayer()
+                {
+                    NflTeam = player.EditorialTeamFullName,
+                    PlayerName = player.Name.Full,
+                    PlayerPosition = player.DisplayPosition,
+                    PlayerImageUrl = player.ImageUrl             
+                };
+
+                roster.Add(nflPlayer);
+            }
+
+            weatherToolVM.TeamRoster = roster;
+            return weatherToolVM;
         }
     }
 }

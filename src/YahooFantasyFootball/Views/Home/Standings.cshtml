@@ -4,18 +4,22 @@
 @model YahooFantasyFootball.ViewModels.StandingsVM
 
 <div class=""></div>
-@foreach (var item in Model.TeamStandings)
+@foreach (var team in Model.TeamStandings)
 {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Placement);
+            @Html.DisplayFor(modelItem => team.Placement);
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TeamManager);
+            <img src="@team.logoUrl" alt="Image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NumberOfMoves);
+            @Html.DisplayFor(modelItem => team.TeamManager);
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => team.NumberOfMoves);
         </td>
     </tr>
+    <br />
 }
 
