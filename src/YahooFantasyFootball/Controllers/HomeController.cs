@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YahooFantasyFootball.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using YahooAPI;
+using YahooSports.Api.Sports.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,13 +14,11 @@ namespace YahooFantasyFootball.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly string CONSUMER_KEY = "dj0yJmk9RTdwa0JPdm9yd2N1JmQ9WVdrOVZIVkxRMVJETXpZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD03Yg--";
-        private static readonly string CONSUMER_SECRET = "b4501ca7d9301f9173c1b6be607f63896e34a2ff";
-        private const string TOKEN_FILE = "token2";
+        private ISportsProviderService _sportsProviderService;
 
-        public HomeController()
+        public HomeController(ISportsProviderService sportsProviderService)
         {
-
+            _sportsProviderService = sportsProviderService;
         }
 
         // GET: /<controller>/
@@ -40,6 +40,9 @@ namespace YahooFantasyFootball.Controllers
         public IActionResult Members()
         {
             ViewBag.Title = "League Members";
+
+            FantasyContent content = _sportsProviderService.GetLeagueInfo();
+            ViewBag.LeagueName = content.League.Name;
             return View();
         }
 

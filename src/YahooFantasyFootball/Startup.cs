@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using YahooSports.Api;
+using YahooAPI;
+using YahooFantasyFootball.Services;
 
 namespace YahooFantasyFootball
 {
@@ -30,6 +31,8 @@ namespace YahooFantasyFootball
         {
             // Add framework services.
             services.AddMvc();
+            services.AddSingleton<ISportsProviderService, SportsProviderService>();
+            services.AddSingleton<IYahooApiService, YahooApiService>();
             //services.AddScoped<>();
         }
 

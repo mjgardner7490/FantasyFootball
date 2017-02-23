@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YahooSports.Api.Sports.Models;
 
 namespace YahooAPI
 {
-    interface ISportsProvider
+    public interface ISportsProviderService
     {
+        FantasyContent GetLeagueInfo();
     }
 }
