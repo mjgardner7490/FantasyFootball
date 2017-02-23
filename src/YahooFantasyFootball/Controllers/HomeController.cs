@@ -18,7 +18,7 @@ namespace YahooFantasyFootball.Controllers
 
         private IYahooApiService _yahooApiService;
 
-        public HomeController(ISportsProviderService sportsProviderService, IYahooApiService yahooApiService)
+        public HomeController(IYahooApiService yahooApiService)
         {
             _yahooApiService = yahooApiService;
         }
