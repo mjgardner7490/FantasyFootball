@@ -5,9 +5,9 @@ using System;
 namespace YahooSports.OAuthLib.Core {
     [Serializable]
     public class TokenBase {
-        public string Token { get; protected set; }
-        public string TokenSecret { get; protected set; }
-        public NameValueCollection AddtionalProperties { get; private set; }
+        public string Token { get; set; }
+        public string TokenSecret { get; set; }
+        public NameValueCollection AddtionalProperties { get; set; }
 
         public TokenBase() {
             AddtionalProperties = new NameValueCollection();
@@ -38,4 +38,5 @@ namespace YahooSports.OAuthLib.Core {
         public AccessToken() {
         }
     }
+   
 }

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using YahooAPI;
+using YahooFantasyFootball.Services;
 
 namespace YahooFantasyFootball
 {
@@ -14,12 +16,12 @@ namespace YahooFantasyFootball
     {
         public Startup(IHostingEnvironment env)
         {
-            //var builder = new ConfigurationBuilder()
-            //    .SetBasePath(env.ContentRootPath)
-            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            //    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-            //    .AddEnvironmentVariables();
-            //Configuration = builder.Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -28,17 +30,35 @@ namespace YahooFantasyFootball
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            //services.AddMvc();
+            services.AddMvc();
+            services.AddSingleton<ISportsProviderService, SportsProviderService>();
+            services.AddSingleton<IYahooApiService, YahooApiService>();
+            //services.AddScoped<>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
-            app.UseDefaultFiles();
+            if(env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Oops");
+            }
+
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
             app.UseStaticFiles();
-            //app.UseMvc();
+            app.UseMvc(config =>
+            {
+                config.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index"});
+            });
         }
     }
 }

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,17 +43,18 @@
   <ItemGroup>
     <Compile Include="Constants\OAuthConstants.cs" />
     <Compile Include="Exceptions\SportsApiException.cs" />
+    <Compile Include="ISportsProviderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApiProviderFactory.cs" />
     <Compile Include="Providers\AuthenticatedProvider.cs" />
     <Compile Include="Providers\IApiProvider.cs" />
-    <Compile Include="SportsProvider.cs" />
+    <Compile Include="Sports\SportsProvider.cs" />
+    <Compile Include="SportsProviderService.cs" />
     <Compile Include="Sports\Models\FantasyContent.cs" />
     <Compile Include="Sports\Models\Game.cs" />
     <Compile Include="Sports\Models\League.cs" />
     <Compile Include="Sports\Models\Player.cs" />
     <Compile Include="Sports\Models\Team.cs" />
-    <Compile Include="Sports\SportsProvider.cs" />
     <Compile Include="Yql\Models\Query.cs" />
     <Compile Include="Yql\Models\Result.cs" />
     <Compile Include="Yql\YqlProvider.cs" />
