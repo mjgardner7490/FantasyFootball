@@ -27,6 +27,14 @@ namespace YahooFantasyFootball.ViewModels
         public string PlayerName { get; set; }
         public string PlayerPosition { get; set; }
         public string PlayerImageUrl { get; set; }
+        public GameWeather gameWeather { get; set; }
+    }
+
+    public class GameWeather
+    {
+        public double temperature { get; set; }
+        public string description { get; set; }
+        public double windSpeed { get; set; }
     }
 
     public static class GameWeeksDictionary

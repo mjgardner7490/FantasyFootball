@@ -33,6 +33,15 @@
             <td>
                 @Html.DisplayFor(modelItem => player.NflTeam);
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.gameWeather.description);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.gameWeather.temperature);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => player.gameWeather.windSpeed);
+            </td>
         </tr>
         <br />
     }

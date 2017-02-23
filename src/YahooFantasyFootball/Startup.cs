@@ -33,20 +33,21 @@ namespace YahooFantasyFootball
             services.AddMvc();
             //services.AddSingleton<ISportsProviderService, SportsProviderService>();
             services.AddSingleton<IYahooApiService, YahooApiService>();
+            services.AddSingleton<IWeatherApiService, WeatherApiService>();
             //services.AddScoped<>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            //if(env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Home/Oops");
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Oops");
+            }
 
             //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             //loggerFactory.AddDebug();
