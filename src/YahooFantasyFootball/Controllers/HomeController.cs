@@ -7,6 +7,7 @@ using YahooFantasyFootball.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using YahooAPI;
 using YahooSports.Api.Sports.Models;
+using YahooFantasyFootball.Services;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,11 +15,12 @@ namespace YahooFantasyFootball.Controllers
 {
     public class HomeController : Controller
     {
-        private ISportsProviderService _sportsProviderService;
 
-        public HomeController(ISportsProviderService sportsProviderService)
+        private IYahooApiService _yahooApiService;
+
+        public HomeController(ISportsProviderService sportsProviderService, IYahooApiService yahooApiService)
         {
-            _sportsProviderService = sportsProviderService;
+            _yahooApiService = yahooApiService;
         }
 
         // GET: /<controller>/
@@ -37,13 +39,12 @@ namespace YahooFantasyFootball.Controllers
             return View();
         }
 
-        public IActionResult Members()
+        public IActionResult Standings()
         {
-            ViewBag.Title = "League Members";
+            StandingsVM leagueStandings = _yahooApiService.GetLeagueStandings();
+            ViewBag.LeagueName = leagueStandings.leagueName;
 
-            FantasyContent content = _sportsProviderService.GetLeagueInfo();
-            ViewBag.LeagueName = content.League.Name;
-            return View();
+            return View(leagueStandings);
         }
 
         [HttpPost]

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using YahooFantasyFootball.ViewModels;
 
 namespace YahooFantasyFootball.Services
 {
     public interface IYahooApiService
     {
+        StandingsVM GetLeagueStandings();
     }
 }
