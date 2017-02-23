@@ -33,6 +33,8 @@
         "YahooAPI": {
           "target": "project"
         }
+      },
+      "frameworkAssemblies": {
       }
     }
   },

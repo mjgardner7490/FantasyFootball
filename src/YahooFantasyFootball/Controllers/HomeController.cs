@@ -19,11 +19,13 @@ namespace YahooFantasyFootball.Controllers
 
         private IYahooApiService _yahooApiService;
         private IWeatherApiService _weatherApiService;
+        public ITempConvertApiService _tempConvertApiService;
 
-        public HomeController(IYahooApiService yahooApiService, IWeatherApiService weatherApiService)
+        public HomeController(IYahooApiService yahooApiService, IWeatherApiService weatherApiService, ITempConvertApiService tempConvertApiService)
         {
             _yahooApiService = yahooApiService;
             _weatherApiService = weatherApiService;
+            _tempConvertApiService = tempConvertApiService;
         }
 
         // GET: /<controller>/
@@ -58,9 +60,26 @@ namespace YahooFantasyFootball.Controllers
                 {
                     string city = player.NflTeam.Substring(0, player.NflTeam.IndexOf(" "));
                     RootObject cityWeather = _weatherApiService.GetCityWeather(city);
-                    player.gameWeather = new GameWeather()
+
+                    string temp = "";
+                    // Need to convert from Kelvin to Farenheit
+                    if (weatherToolVM.TemperatureUnitId == 1)
                     {
-                        temperature = cityWeather.main.temp,
+                        temp = _tempConvertApiService.ConvertTemperature(cityWeather.main.temp.ToString(), "kelvin", "degreeFahrenheit");
+                    }
+                    //Need to convert from Kelvin to Celsius
+                    else if (weatherToolVM.TemperatureUnitId == 2)
+                    {
+                        temp = _tempConvertApiService.ConvertTemperature(cityWeather.main.temp.ToString(), "kelvin", "degreeCelsius");
+                    }
+                    else
+                    {
+                        temp = cityWeather.main.temp.ToString();
+                    }
+
+                    player.gameWeather = new GameWeather()
+                    {                          
+                        temperature = Math.Round(Convert.ToDouble(temp)),
                         description = cityWeather.weather.First().description,
                         windSpeed = cityWeather.wind.speed
                     };

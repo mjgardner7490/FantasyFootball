@@ -13,6 +13,7 @@
 {
     @Html.DropDownListFor(model => model.GameWeekId, Model.GameWeeks, "Select...", new { @class = "input-sm" })
     @Html.DropDownListFor(model => model.TeamId, Model.Managers, "Select...", new { @class = "input-sm" })
+    @Html.DropDownListFor(model => model.TemperatureUnitId, Model.TemperatureUnits, "Select...", new { @class = "input-sm" })
     <input type="submit" value="Submit" />
 }
 

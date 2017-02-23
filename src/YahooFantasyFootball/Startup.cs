@@ -34,6 +34,7 @@ namespace YahooFantasyFootball
             //services.AddSingleton<ISportsProviderService, SportsProviderService>();
             services.AddSingleton<IYahooApiService, YahooApiService>();
             services.AddSingleton<IWeatherApiService, WeatherApiService>();
+            services.AddSingleton<ITempConvertApiService, TempConvertApiService>();
             //services.AddScoped<>();
         }
 
