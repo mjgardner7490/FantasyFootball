@@ -1,25 +1,32 @@
-﻿<h1>League Standings</h1>
-<h2>@ViewBag.LeagueName</h2>
+﻿<h2>League Standings</h2>
+<h3>@ViewBag.LeagueName</h3>
 
 @model YahooFantasyFootball.ViewModels.StandingsVM
 
-<div class=""></div>
-@foreach (var team in Model.TeamStandings)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => team.Placement);
-        </td>
-        @*<td>
-            <img src="@team.logoUrl" alt="Image" />
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => team.TeamManager);
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => team.NumberOfMoves);
-        </td>
-    </tr>
-    <br />
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Placement</th>
+            <th>Team Manager</th>
+            <th>Number of Moves</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model.TeamStandings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => team.Placement)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => team.TeamManager)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => team.NumberOfMoves)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 

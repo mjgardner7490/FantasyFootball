@@ -44,7 +44,7 @@ namespace YahooFantasyFootball.Controllers
         public IActionResult Standings()
         {
             StandingsVM leagueStandings = _yahooApiService.GetLeagueStandings();
-            ViewBag.LeagueName = leagueStandings.leagueName;
+            ViewBag.LeagueName = "Fantasy League";
 
             return View(leagueStandings);
         }

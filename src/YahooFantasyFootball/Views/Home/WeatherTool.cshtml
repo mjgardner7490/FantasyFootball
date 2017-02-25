@@ -1,49 +1,58 @@
 ﻿<h1>@ViewBag.Title</h1>
 
-@*@model YahooFantasyFootball.ViewModels.GameWeekVM
-@using (Html.BeginForm("WeatherTool", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-
-    @Html.DropDownListFor(x => x.GameWeekId, new SelectList(Model.GameWeekList, "Value", "Text"), "Select..", new { @class = "input-sm" })
-    <input type="submit" value="Submit" />
-}*@
-
 @model YahooFantasyFootball.ViewModels.WeatherToolVM
+<div class="form-horizontal col-md-12" style="display: inline-block">
 @using (Html.BeginForm("WeatherTool", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.DropDownListFor(model => model.GameWeekId, Model.GameWeeks, "Select...", new { @class = "input-sm" })
     @Html.DropDownListFor(model => model.TeamId, Model.Managers, "Select...", new { @class = "input-sm" })
     @Html.DropDownListFor(model => model.TemperatureUnitId, Model.TemperatureUnits, "Select...", new { @class = "input-sm" })
-    <input type="submit" value="Submit" />
+    <input class="input-sm" type="submit" value="Submit" />
 }
+</div>
 
-@if (Model.TeamRoster != null)
-{
-    @foreach (var player in Model.TeamRoster)
-    {
+<table class="table">
+    <thead>
         <tr>
-            <td>
-                <img src="@player.PlayerImageUrl" alt="Image" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.PlayerPosition);
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.PlayerName);
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.NflTeam);
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.gameWeather.description);
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.gameWeather.temperature);
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => player.gameWeather.windSpeed);
-            </td>
+            <th>Player Icon</th>
+            <th>Position</th>
+            <th>Player Name</th>
+            <th>Team Name</th>
+            <th>Weather Description</th>
+            <th>Temperature</th>
+            <th>Wind Speed (MPH)</th>
         </tr>
-        <br />
-    }
-}
+    </thead>
+    <tbody>
+        @if (Model.TeamRoster != null)
+        {
+            @foreach (var player in Model.TeamRoster)
+            {
+                <tr>
+                    <td>
+                        <img src="@player.PlayerImageUrl" alt="Image" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => player.PlayerPosition)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => player.PlayerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => player.NflTeam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => player.gameWeather.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => player.gameWeather.temperature)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => player.gameWeather.windSpeed)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
