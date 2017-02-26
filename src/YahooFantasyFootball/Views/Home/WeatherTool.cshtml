@@ -6,7 +6,6 @@
 {
     @Html.DropDownListFor(model => model.GameWeekId, Model.GameWeeks, "Select...", new { @class = "input-sm" })
     @Html.DropDownListFor(model => model.TeamId, Model.Managers, "Select...", new { @class = "input-sm" })
-    @Html.DropDownListFor(model => model.TemperatureUnitId, Model.TemperatureUnits, "Select...", new { @class = "input-sm" })
     <input class="input-sm" type="submit" value="Submit" />
 }
 </div>
@@ -19,7 +18,7 @@
             <th>Player Name</th>
             <th>Team Name</th>
             <th>Weather Description</th>
-            <th>Temperature</th>
+            <th>Temperature(F)</th>
             <th>Wind Speed (MPH)</th>
         </tr>
     </thead>
