@@ -6,6 +6,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>Placement</th>
             <th>Team Manager</th>
             <th>Number of Moves</th>
@@ -15,6 +16,9 @@
         @foreach (var team in Model.TeamStandings)
         {
             <tr>
+                <td >
+                    <img class="img-responsive img-rounded" src="@team.logoUrl" width="64" height="64" alt="Team Logo" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => team.Placement)
                 </td>

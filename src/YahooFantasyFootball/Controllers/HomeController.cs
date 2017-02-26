@@ -39,6 +39,11 @@ namespace YahooFantasyFootball.Controllers
             return View(leagueStandings);
         }
 
+        public IActionResult SpankBank()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult WeatherTool(WeatherToolVM weatherToolVM)
         {
