@@ -7,9 +7,9 @@
     <thead>
         <tr>
             <th></th>
-            <th>Placement</th>
-            <th>Team Manager</th>
-            <th>Number of Moves</th>
+            <th class="text-center">Placement</th>
+            <th class="text-center">Team Manager</th>
+            <th class="text-center">Number of Moves</th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +19,13 @@
                 <td >
                     <img class="img-responsive img-rounded" src="@team.logoUrl" width="64" height="64" alt="Team Logo" />
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => team.Placement)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => team.TeamManager)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => team.NumberOfMoves)
                 </td>
             </tr>

@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using YahooFantasyFootball.ViewModels;
 using YahooFantasyFootball.Services;
 using YahooFantasyFootball.Models;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using System.Collections.Generic;
 
 namespace YahooFantasyFootball.Controllers
 {
@@ -41,6 +44,20 @@ namespace YahooFantasyFootball.Controllers
 
         public IActionResult SpankBank()
         {
+            //var imageDirectory = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/imgs"));
+            //var imagePaths = imageDirectory.GetDirectoryContents("SpankBank");
+
+            //var imagePathList = new List<string>();
+
+            //foreach (var path in imagePaths)
+            //{
+            //    var relativeImagePath = "~" + path.PhysicalPath.Substring(path.PhysicalPath.IndexOf("\\imgs"));
+            //    imagePathList.Add(path.PhysicalPath);
+            //}
+
+            //SpankBankVM spankBankVM = new SpankBankVM();
+            //spankBankVM.spankBankImages = imagePathList;
+
             return View();
         }
 

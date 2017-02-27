@@ -13,13 +13,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Player Icon</th>
-            <th>Position</th>
-            <th>Player Name</th>
-            <th>Team Name</th>
-            <th>Weather Description</th>
-            <th>Temperature(F)</th>
-            <th>Wind Speed (MPH)</th>
+            <th></th>
+            <th class="text-center">Position</th>
+            <th class="text-center">Player Name</th>
+            <th class="text-center">Team Name</th>
+            <th class="text-center">Weather Description</th>
+            <th class="text-center">Temperature(F)</th>
+            <th class="text-center">Wind Speed (MPH)</th>
         </tr>
     </thead>
     <tbody>
@@ -29,24 +29,24 @@
             {
                 <tr>
                     <td>
-                        <img class="img-responsive img-rounded" src="@player.PlayerImageUrl" alt="Image" />
+                        <img class="img-rounded" src="@player.PlayerImageUrl" width="48" height="64" alt="Player Logo" />
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => player.PlayerPosition)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => player.PlayerName)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => player.NflTeam)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => player.gameWeather.description)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => player.gameWeather.temperature)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.DisplayFor(modelItem => player.gameWeather.windSpeed)
                     </td>
                 </tr>
