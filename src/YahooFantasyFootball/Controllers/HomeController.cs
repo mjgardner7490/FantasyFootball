@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using YahooFantasyFootball.ViewModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using YahooAPI;
-using YahooSports.Api.Sports.Models;
 using YahooFantasyFootball.Services;
 using YahooFantasyFootball.Models;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using System.Collections.Generic;
 
 namespace YahooFantasyFootball.Controllers
 {
@@ -19,13 +14,11 @@ namespace YahooFantasyFootball.Controllers
 
         private IYahooApiService _yahooApiService;
         private IWeatherApiService _weatherApiService;
-        public ITempConvertApiService _tempConvertApiService;
 
-        public HomeController(IYahooApiService yahooApiService, IWeatherApiService weatherApiService, ITempConvertApiService tempConvertApiService)
+        public HomeController(IYahooApiService yahooApiService, IWeatherApiService weatherApiService)
         {
             _yahooApiService = yahooApiService;
             _weatherApiService = weatherApiService;
-            _tempConvertApiService = tempConvertApiService;
         }
 
         // GET: /<controller>/
@@ -44,9 +37,28 @@ namespace YahooFantasyFootball.Controllers
         public IActionResult Standings()
         {
             StandingsVM leagueStandings = _yahooApiService.GetLeagueStandings();
-            ViewBag.LeagueName = "Fantasy League";
+            ViewBag.LeagueName = leagueStandings.leagueName;
 
             return View(leagueStandings);
+        }
+
+        public IActionResult SpankBank()
+        {
+            //var imageDirectory = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/imgs"));
+            //var imagePaths = imageDirectory.GetDirectoryContents("SpankBank");
+
+            //var imagePathList = new List<string>();
+
+            //foreach (var path in imagePaths)
+            //{
+            //    var relativeImagePath = "~" + path.PhysicalPath.Substring(path.PhysicalPath.IndexOf("\\imgs"));
+            //    imagePathList.Add(path.PhysicalPath);
+            //}
+
+            //SpankBankVM spankBankVM = new SpankBankVM();
+            //spankBankVM.spankBankImages = imagePathList;
+
+            return View();
         }
 
         [HttpPost]
@@ -61,25 +73,9 @@ namespace YahooFantasyFootball.Controllers
                     string city = player.NflTeam.Substring(0, player.NflTeam.IndexOf(" "));
                     RootObject cityWeather = _weatherApiService.GetCityWeather(city);
 
-                    string temp = "";
-                    // Need to convert from Kelvin to Farenheit
-                    if (weatherToolVM.TemperatureUnitId == 1)
-                    {
-                        temp = _tempConvertApiService.ConvertTemperature(cityWeather.main.temp.ToString(), "kelvin", "degreeFahrenheit");
-                    }
-                    //Need to convert from Kelvin to Celsius
-                    else if (weatherToolVM.TemperatureUnitId == 2)
-                    {
-                        temp = _tempConvertApiService.ConvertTemperature(cityWeather.main.temp.ToString(), "kelvin", "degreeCelsius");
-                    }
-                    else
-                    {
-                        temp = cityWeather.main.temp.ToString();
-                    }
-
                     player.gameWeather = new GameWeather()
                     {                          
-                        temperature = Math.Round(Convert.ToDouble(temp)),
+                        temperature = cityWeather.main.temp,
                         description = cityWeather.weather.First().description,
                         windSpeed = cityWeather.wind.speed
                     };
