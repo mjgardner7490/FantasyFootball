@@ -12,12 +12,11 @@ namespace YahooFantasyFootball.Services
     public class WeatherApiService : IWeatherApiService
     {
         private static string apiKey = "18a390c41b21328841ff6471db7bef48";
-        
+
 
         public RootObject GetCityWeather(string city, string country = "us")
         {
-            //string url2 = "http://api.openweathermap.org/data/2.5/weather?q=detroit,us&APPID=18a390c41b21328841ff6471db7bef48";
-            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0},{1}&APPID={2}", city, country, apiKey);
+            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0},{1}&units=imperial&APPID={2}", city, country, apiKey);
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
@@ -34,3 +33,4 @@ namespace YahooFantasyFootball.Services
         }
     }
 }
+

@@ -11,8 +11,6 @@ namespace YahooFantasyFootball.ViewModels
         public int GameWeekId { get; set; }
         public IEnumerable<SelectListItem> GameWeeks { get; set; }
         public string TeamId { get; set; }
-        public int TemperatureUnitId { get; set; }
-        public IEnumerable<SelectListItem> TemperatureUnits { get; set; }
         public IEnumerable<SelectListItem> Managers { get; set; }
         public IEnumerable<NflPlayer> TeamRoster { get; set; }
 
@@ -20,7 +18,6 @@ namespace YahooFantasyFootball.ViewModels
         {
             GameWeeks = GameWeeksDictionary.GameWeekSelectList;
             Managers = ManagersDictionary.ManagersSelectList;
-            TemperatureUnits = TemperatureUnitsDictionary.TemperatureUnitSelectList;
         }
     }
 
@@ -38,25 +35,6 @@ namespace YahooFantasyFootball.ViewModels
         public double temperature { get; set; }
         public string description { get; set; }
         public double windSpeed { get; set; }
-    }
-
-    public static class TemperatureUnitsDictionary
-    {
-        public static SelectList TemperatureUnitSelectList
-        {
-            get
-            {
-                return new SelectList(TemperatureUnitDictionary, "Key", "Value");
-            }
-        }
-
-        public static readonly IDictionary<int, string> TemperatureUnitDictionary
-            = new Dictionary<int, string>
-            {
-                { 0, "Kelvin" },
-                { 1, "Fahrenheit" },
-                { 2, "Celsius" }
-            };
     }
 
     public static class GameWeeksDictionary

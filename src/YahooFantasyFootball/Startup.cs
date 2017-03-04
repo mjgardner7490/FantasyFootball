@@ -34,8 +34,6 @@ namespace YahooFantasyFootball
             //services.AddSingleton<ISportsProviderService, SportsProviderService>();
             services.AddSingleton<IYahooApiService, YahooApiService>();
             services.AddSingleton<IWeatherApiService, WeatherApiService>();
-            services.AddSingleton<ITempConvertApiService, TempConvertApiService>();
-            //services.AddScoped<>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

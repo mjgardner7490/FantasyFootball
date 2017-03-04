@@ -6,22 +6,26 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Placement</th>
-            <th>Team Manager</th>
-            <th>Number of Moves</th>
+            <th></th>
+            <th class="text-center">Placement</th>
+            <th class="text-center">Team Manager</th>
+            <th class="text-center">Number of Moves</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var team in Model.TeamStandings)
         {
             <tr>
-                <td>
+                <td >
+                    <img class="img-responsive img-rounded" src="@team.logoUrl" width="64" height="64" alt="Team Logo" />
+                </td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => team.Placement)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => team.TeamManager)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => team.NumberOfMoves)
                 </td>
             </tr>

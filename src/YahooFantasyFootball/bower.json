@@ -2,6 +2,6 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "jQuery": "3.1.1"
+    "bootstrap": "3.3.6"
   }
 }
